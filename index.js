@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import _ from "lodash";
+import * as dotenv from 'dotenv' 
+dotenv.config()
 
 const app = express();
 const port = 3000;
@@ -13,7 +15,7 @@ app.use(express.static("public"));
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect('mongodb+srv://ismetenes:Yi204883@cluster0.gik1zdg.mongodb.net/todolistDB'); // it will create if fruitsDB does not exist
+    await mongoose.connect(process.env.MONGO_URI); // it will create if fruitsDB does not exist
 }
 
 const itemsSchema = mongoose.Schema({
